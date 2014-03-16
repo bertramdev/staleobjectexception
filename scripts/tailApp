@@ -1,0 +1,3 @@
+#! /bin/sh
+. ./setEnvironment
+tail -500f $APPHOME/servers/$APPSERVER/logs/catalina.out

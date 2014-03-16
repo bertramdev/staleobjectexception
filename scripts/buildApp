@@ -1,0 +1,4 @@
+#! /bin/sh
+. ./setEnvironment
+cd $APPHOME/releases/current
+grails prod war;

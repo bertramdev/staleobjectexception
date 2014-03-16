@@ -1,0 +1,3 @@
+#! /bin/sh
+. ./setEnvironment
+ps -A | grep $(cat $APPHOME/logs/$APPNAME.pid)

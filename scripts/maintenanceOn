@@ -1,0 +1,3 @@
+#! /bin/sh
+. ./setEnvironment
+cp $APPHOME/config/maintenance.html $APPHOME/storage/

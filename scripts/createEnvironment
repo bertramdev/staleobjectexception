@@ -1,0 +1,22 @@
+#! /bin/sh
+. ./setEnvironment
+mkdir -p $APPHOME/repository;
+mkdir -p $APPHOME/releases/current;
+mkdir -p $APPHOME/releases/previous;
+mkdir -p $APPHOME/logs;
+mkdir -p $APPHOME/storage;
+mkdir -p $APPHOME/backup;
+mkdir -p $APPHOME/config;
+
+mkdir -p $CATALINA_BASE;
+mkdir -p $CATALINA_BASE/conf;
+mkdir -p $CATALINA_BASE/logs;
+mkdir -p $CATALINA_BASE/temp;
+mkdir -p $CATALINA_BASE/webapps;
+mkdir -p $CATALINA_BASE/work;
+
+cp -r $CATALINA_HOME/conf/* $CATALINA_BASE/conf/
+#cp -r $CATALINA_HOME/logs/* $CATALINA_BASE/logs/
+cp -r $CATALINA_HOME/temp/* $CATALINA_BASE/temp/
+cp -r $CATALINA_HOME/webapps/* $CATALINA_BASE/webapps/
+#cp -r $CATALINA_HOME/work/* $CATALINA_BASE/work/

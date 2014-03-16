@@ -1,0 +1,6 @@
+#! /bin/sh
+. ./setEnvironment
+rm -rf $CATALINA_BASE/webapps/ROOT*
+cp $APPHOME/releases/current/target/$WARNAME $CATALINA_BASE/webapps/ROOT.war
+cd $CATALINA_HOME/bin
+./startup.sh

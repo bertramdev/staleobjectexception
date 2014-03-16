@@ -1,0 +1,50 @@
+upstream ProconServer {
+  server 127.0.0.1:18080;
+}
+
+server {
+  listen 80;
+  server_name backend.us.spireon.com backend1.us.spireon.com;
+  access_log  /var/log/nginx/ProconServer.access.log;
+  #auth_basic "Restricted";
+  #auth_basic_user_file /etc/nginx/auth/procon;
+  root   /home/procon/storage/ProconServer;
+
+  if (-f $document_root/maintenance.html) {
+    rewrite ^(.*)$ /images/storage/maintenance.html last;
+    break;
+  }
+
+  location /images/storage {
+    rewrite /images/storage/(.*)$ /$1;
+    expires 30d;
+    break;
+  }
+
+  location /static {
+    break;
+  }
+
+  location / {
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $host;
+    proxy_set_header Authorization None;
+    proxy_redirect off;
+    client_max_body_size 10m;
+    #if (-f $request_filename) { 
+    #  break; 
+    #}    
+    #if (!-f $request_filename) { 
+      proxy_pass http://ProconServer;
+      break; 
+    #}
+    #break;
+  }
+
+  error_page   500 502 503 504  /500.html;
+  location = /500.html {
+    root   /var/www;
+  }
+
+}

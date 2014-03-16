@@ -1,0 +1,8 @@
+#! /bin/sh
+. ./setEnvironment
+cd $APPHOME/repository;
+#svn up;
+git pull;
+cd $APPHOME/scripts;
+mv $APPHOME/releases/current $APPHOME/releases/previous/release$(date +%m%d%Y%H%M);
+cp -rf $APPHOME/repository $APPHOME/releases/current;
